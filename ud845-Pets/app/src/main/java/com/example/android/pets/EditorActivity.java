@@ -15,9 +15,12 @@
  */
 package com.example.android.pets;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,8 +29,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.android.pets.Data.PetContract.PetEntry;
+import com.example.android.pets.Data.PetDbHelper;
 
 /**
  * Allows user to create a new pet or edit an existing one.
@@ -36,12 +41,15 @@ public class EditorActivity extends AppCompatActivity {
 
     /** EditText field to enter the pet's name */
     private EditText mNameEditText;
+    private Editable petName;
 
     /** EditText field to enter the pet's breed */
     private EditText mBreedEditText;
+    private Editable petBreed;
 
     /** EditText field to enter the pet's weight */
     private EditText mWeightEditText;
+    private Editable petWeight;
 
     /** EditText field to enter the pet's gender */
     private Spinner mGenderSpinner;
@@ -113,21 +121,75 @@ public class EditorActivity extends AppCompatActivity {
         return true;
     }
 
+    private void insertPet() {
+        // Read from input fields
+        // Use trim to eliminate leading or trailing white space
+        String nameString = mNameEditText.getText().toString().trim();
+        String breedString = mBreedEditText.getText().toString().trim();
+        String weightString = mWeightEditText.getText().toString().trim();
+        int weight = Integer.parseInt(weightString);
+
+        // Create database helper
+        PetDbHelper mDbHelper = new PetDbHelper(this);
+
+        // Gets the database in write mode
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        // Create a ContentValues object where column names are the keys,
+        // and pet attributes from the editor are the values.
+        ContentValues values = new ContentValues();
+        values.put(PetEntry.COLUMN_PET_NAME, nameString);
+        values.put(PetEntry.COLUMN_PET_BREED, breedString);
+        values.put(PetEntry.COLUMN_PET_GENDER, mGender);
+        values.put(PetEntry.COLUMN_PET_WEIGHT, weight);
+
+        // Insert a new row for pet in the database, returning the ID of that new row.
+        long newRowId = db.insert(PetEntry.TABLE_NAME, null, values);
+
+        // Show a toast message depending on whether or not the insertion was successful
+        if (newRowId == -1) {
+            // If the row ID is -1, then there was an error with insertion.
+            Toast.makeText(this, "Error with saving pet", Toast.LENGTH_SHORT).show();
+        } else {
+            // Otherwise, the insertion was successful and we can display a toast with the row ID.
+            Toast.makeText(this, "Pet saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+//    private void insertPet(){
+//        petName = mNameEditText.getText();
+//        petBreed = mBreedEditText.getText();
+//        petWeight = mWeightEditText.getText();
+//
+//        PetDbHelper mDbhelper = new PetDbHelper(this);
+//        SQLiteDatabase dataDb = mDbhelper.getWritableDatabase() ;
+//
+//        ContentValues rowValues = new ContentValues();
+//        rowValues.put(PetEntry.COLUMN_PET_NAME, String.valueOf(petName));
+//        rowValues.put(PetEntry.COLUMN_PET_BREED, String.valueOf(petBreed));
+//        rowValues.put(PetEntry.COLUMN_PET_GENDER,mGender);
+//        rowValues.put(PetEntry.COLUMN_PET_WEIGHT, String.valueOf(petWeight));
+//
+//        long newRow = dataDb.insert(TABLE_NAME,null,rowValues);
+//
+//    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // User clicked on a menu option in the app bar overflow menu
+
         switch (item.getItemId()) {
-            // Respond to a click on the "Save" menu option
+
             case R.id.action_save:
-                // Do nothing for now
+
+                insertPet();
+                finish();
                 return true;
-            // Respond to a click on the "Delete" menu option
+
             case R.id.action_delete:
-                // Do nothing for now
+
                 return true;
-            // Respond to a click on the "Up" arrow button in the app bar
             case android.R.id.home:
-                // Navigate back to parent activity (CatalogActivity)
+
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
         }

@@ -15,6 +15,7 @@
  */
 package com.example.android.pets;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,6 +29,9 @@ import android.widget.TextView;
 
 import com.example.android.pets.Data.PetContract.PetEntry;
 import com.example.android.pets.Data.PetDbHelper;
+
+import static com.example.android.pets.Data.PetContract.PetEntry.GENDER_MALE;
+import static com.example.android.pets.Data.PetContract.PetEntry.TABLE_NAME;
 
 /**
  * Displays list of pets that were entered and stored in the app.
@@ -49,10 +53,10 @@ public class CatalogActivity extends AppCompatActivity {
             }
         });
 
-//        displayDatabaseInfo();
-
-        PetDbHelper mDbHelper = new PetDbHelper(this);
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        displayDatabaseInfo();
+//
+//        PetDbHelper mDbHelper = new PetDbHelper(this);
+//        SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
     }
 
@@ -83,6 +87,22 @@ public class CatalogActivity extends AppCompatActivity {
         }
     }
 
+    private void insertPet(){
+
+        PetDbHelper mDbhelper = new PetDbHelper(this);
+        SQLiteDatabase datab = mDbhelper.getWritableDatabase() ;
+
+        ContentValues rowValues = new ContentValues();
+        rowValues.put(PetEntry.COLUMN_PET_NAME,"Toto");
+        rowValues.put(PetEntry.COLUMN_PET_BREED,"Terrier");
+        rowValues.put(PetEntry.COLUMN_PET_GENDER,GENDER_MALE);
+        rowValues.put(PetEntry.COLUMN_PET_WEIGHT,75);
+
+        long newRow = datab.insert(TABLE_NAME,null,rowValues);
+        displayDatabaseInfo();
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu options from the res/menu/menu_catalog.xml file.
@@ -97,7 +117,8 @@ public class CatalogActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.action_insert_dummy_data:
-                // Do nothing for now
+                insertPet();
+                displayDatabaseInfo();
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
