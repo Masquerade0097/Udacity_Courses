@@ -42,6 +42,7 @@ public class CatalogActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
