@@ -30,8 +30,13 @@ import android.widget.TextView;
 import com.example.android.pets.Data.PetContract.PetEntry;
 import com.example.android.pets.Data.PetDbHelper;
 
+import static com.example.android.pets.Data.PetContract.PetEntry.COLUMN_PET_BREED;
+import static com.example.android.pets.Data.PetContract.PetEntry.COLUMN_PET_GENDER;
+import static com.example.android.pets.Data.PetContract.PetEntry.COLUMN_PET_NAME;
+import static com.example.android.pets.Data.PetContract.PetEntry.COLUMN_PET_WEIGHT;
 import static com.example.android.pets.Data.PetContract.PetEntry.GENDER_MALE;
 import static com.example.android.pets.Data.PetContract.PetEntry.TABLE_NAME;
+import static com.example.android.pets.Data.PetContract.PetEntry._ID;
 
 /**
  * Displays list of pets that were entered and stored in the app.
@@ -60,6 +65,12 @@ public class CatalogActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        displayDatabaseInfo();
+    }
+
     /**
      * Temporary helper method to display information in the onscreen TextView about the state of
      * the pets database.
@@ -67,19 +78,74 @@ public class CatalogActivity extends AppCompatActivity {
     private void displayDatabaseInfo() {
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
+
+        String mPetName;
+        String mPetBreed;
+        int mPetWeight;
+        int mPetGender;
+        int mPetId;
+        String printIt;
+
+        TextView displayTable = (TextView) findViewById(R.id.text_view_info);
+        displayTable.setText("Table - ");
+
         PetDbHelper mDbHelper = new PetDbHelper(this);
 
         // Create and/or open a database to read from it
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        // Perform this raw SQL query "SELECT * FROM pets"
-        // to get a Cursor that contains all rows from the pets table.
-        Cursor cursor = db.rawQuery("SELECT * FROM " + PetEntry.TABLE_NAME, null);
+        String[] projections = {
+                PetEntry._ID,
+                PetEntry.COLUMN_PET_NAME,
+                PetEntry.COLUMN_PET_WEIGHT,
+                PetEntry.COLUMN_PET_BREED,
+                PetEntry.COLUMN_PET_GENDER
+        };
+
+        Cursor cursor = db.query(
+                PetEntry.TABLE_NAME,
+                projections,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+
+
+//        // Perform this raw SQL query "SELECT * FROM pets"
+//        // to get a Cursor that contains all rows from the pets table.
+//        Cursor cursor = db.rawQuery("SELECT * FROM " + PetEntry.TABLE_NAME, null);
         try {
             // Display the number of rows in the Cursor (which reflects the number of rows in the
             // pets table in the database).
             TextView displayView = (TextView) findViewById(R.id.text_view_pet);
             displayView.setText("Number of rows in pets database table: " + cursor.getCount());
+
+
+            while(cursor.moveToNext()){
+
+                mPetName = cursor.getString(cursor.getColumnIndex(COLUMN_PET_NAME));
+                mPetBreed = cursor.getString(cursor.getColumnIndex(COLUMN_PET_BREED));
+                mPetGender = cursor.getInt(cursor.getColumnIndex(COLUMN_PET_GENDER));
+                mPetWeight = cursor.getInt(cursor.getColumnIndex(COLUMN_PET_WEIGHT));
+                mPetId = cursor.getInt(cursor.getColumnIndex(_ID));
+
+//                printIt = mPetId + mPetName + mPetBreed + mPetGender + mPetWeight + "\n";
+                displayTable.append(("\n" + mPetId + " - " +
+                        mPetName + " - " +
+                        mPetBreed + " - " +
+                        mPetGender + " - " +
+                        mPetWeight));
+            }
+//            displayTable.append(("\n" + mPetId + " - " +
+//                    mPetName + " - " +
+//                    mPetBreed + " - " +
+//                    mPetGender + " - " +
+//                    mPetWeight));
+
+
         } finally {
             // Always close the cursor when you're done reading from it. This releases all its
             // resources and makes it invalid.

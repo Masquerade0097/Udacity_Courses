@@ -12,12 +12,30 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/jars/libs/internal_impl-24.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.1.1_3cf3c301c9a6a7b55de9b8aaf74b7bcae761ee6c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/priyanshu/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.1.1/support-annotations-24.1.1.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
         <dex dex="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.1.1_d88ced84d7137e976c540545ee9b858094fb8639/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.1.1_d38e0d7528c380c4b2104831bd5b5b75dd21bc64/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -34,8 +52,26 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="5a86274a254c9bbe75026dfa00a32946dce92d11">
+        sha1="02a8dcef326517505767ab238d4644649c0c4b15">
         <dex dex="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_7c3254c3e5c23fdc7e7df3fdbe202ec211444693/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="f388ecd72abaf46c744600fa85f9f8a99dabd8f5">
+        <dex dex="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_b54c66ea51278451502ef3db56abc4104f02923d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="f62e763609f65e47dc6c498760a4accf02776788">
+        <dex dex="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.1.1_f61666e3831700bc30b35496f06be136f5b22033/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -54,42 +90,6 @@
         revision="23.0.3"
         sha1="1256c10604bb098490eab070d76754ac5ceab35c">
         <dex dex="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.1.1_7deda49a34f36686fc48f7de4e25ba12c89c8444/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/jars/libs/internal_impl-24.1.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
-        <dex dex="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.1.1_3cf3c301c9a6a7b55de9b8aaf74b7bcae761ee6c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="6d7d803871e3203465f71a163e7af104f807b446">
-        <dex dex="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.1.1_d38e0d7528c380c4b2104831bd5b5b75dd21bc64/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="ae1c53ab72da6666f12b7d5073303042193976d1">
-        <dex dex="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_b54c66ea51278451502ef3db56abc4104f02923d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="f62e763609f65e47dc6c498760a4accf02776788">
-        <dex dex="/home/priyanshu/AndroidStudioProjects/Udacity/ud845-Pets/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.1.1_f61666e3831700bc30b35496f06be136f5b22033/classes.dex" />
     </item>
 
 </items>
