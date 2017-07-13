@@ -18,26 +18,26 @@ package com.example.android.pets;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.android.pets.Data.PetContract.PetEntry;
-import com.example.android.pets.Data.PetDbHelper;
+import com.example.android.pets.data.PetContract.PetEntry;
 
-import static com.example.android.pets.Data.PetContract.PetEntry.COLUMN_PET_BREED;
-import static com.example.android.pets.Data.PetContract.PetEntry.COLUMN_PET_GENDER;
-import static com.example.android.pets.Data.PetContract.PetEntry.COLUMN_PET_NAME;
-import static com.example.android.pets.Data.PetContract.PetEntry.COLUMN_PET_WEIGHT;
-import static com.example.android.pets.Data.PetContract.PetEntry.CONTENT_URI;
-import static com.example.android.pets.Data.PetContract.PetEntry.GENDER_MALE;
-import static com.example.android.pets.Data.PetContract.PetEntry.TABLE_NAME;
-import static com.example.android.pets.Data.PetContract.PetEntry._ID;
+import static com.example.android.pets.data.PetContract.PetEntry.COLUMN_PET_BREED;
+import static com.example.android.pets.data.PetContract.PetEntry.COLUMN_PET_GENDER;
+import static com.example.android.pets.data.PetContract.PetEntry.COLUMN_PET_NAME;
+import static com.example.android.pets.data.PetContract.PetEntry.COLUMN_PET_WEIGHT;
+import static com.example.android.pets.data.PetContract.PetEntry.CONTENT_URI;
+import static com.example.android.pets.data.PetContract.PetEntry.GENDER_MALE;
+import static com.example.android.pets.data.PetContract.PetEntry._ID;
+import static com.example.android.pets.data.PetProvider.LOG_TAG;
 
 /**
  * Displays list of pets that were entered and stored in the app.
@@ -58,8 +58,6 @@ public class CatalogActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        displayDatabaseInfo();
 
 //        PetDbHelper mDbHelper = new PetDbHelper(this);
 //        SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -90,10 +88,10 @@ public class CatalogActivity extends AppCompatActivity {
         TextView displayTable = (TextView) findViewById(R.id.text_view_info);
         displayTable.setText("Table - ");
 
-        PetDbHelper mDbHelper = new PetDbHelper(this);
-
-        // Create and/or open a database to read from it
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+//        PetDbHelper mDbHelper = new PetDbHelper(this);
+//
+//        // Create and/or open a database to read from it
+//        SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String[] projections = {
                 PetEntry._ID,
@@ -114,8 +112,10 @@ public class CatalogActivity extends AppCompatActivity {
         );*/
 //NEW APPROACH
         Cursor cursor = getContentResolver().query(CONTENT_URI,projections,null,null,null);
+        if(cursor == null){
+            Log.v(LOG_TAG, "Cursor here is nulll ");
 
-
+        }
 
 
 //        // Perform this raw SQL query "SELECT * FROM pets"
@@ -125,7 +125,13 @@ public class CatalogActivity extends AppCompatActivity {
             // Display the number of rows in the Cursor (which reflects the number of rows in the
             // pets table in the database).
             TextView displayView = (TextView) findViewById(R.id.text_view_pet);
-            displayView.setText("Number of rows in pets database table: " + cursor.getCount());
+            if (cursor != null) {
+                displayView.setText("Number of rows in pets database table: " + cursor.getCount());
+            }
+            else{
+                Log.v(LOG_TAG, "Cursor here is nulll ");
+
+            }
 
 
             while(cursor.moveToNext()){
@@ -153,14 +159,18 @@ public class CatalogActivity extends AppCompatActivity {
         } finally {
             // Always close the cursor when you're done reading from it. This releases all its
             // resources and makes it invalid.
-            cursor.close();
+
+            if (cursor != null) {
+                cursor.close();
+            }
+            else{
+                Log.v(LOG_TAG, "Cursor here is nulll ");
+            }
+
         }
     }
 
     private void insertPet(){
-
-        PetDbHelper mDbhelper = new PetDbHelper(this);
-        SQLiteDatabase datab = mDbhelper.getWritableDatabase() ;
 
         ContentValues rowValues = new ContentValues();
         rowValues.put(PetEntry.COLUMN_PET_NAME,"Toto");
@@ -168,8 +178,7 @@ public class CatalogActivity extends AppCompatActivity {
         rowValues.put(PetEntry.COLUMN_PET_GENDER,GENDER_MALE);
         rowValues.put(PetEntry.COLUMN_PET_WEIGHT,75);
 
-        long newRow = datab.insert(TABLE_NAME,null,rowValues);
-        displayDatabaseInfo();
+        Uri uriInsert = getContentResolver().insert(CONTENT_URI,rowValues);
 
     }
 
