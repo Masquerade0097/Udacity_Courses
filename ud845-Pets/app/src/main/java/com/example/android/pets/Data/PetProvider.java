@@ -8,6 +8,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
+import static com.example.android.pets.Data.PetContract.PetEntry.TABLE_NAME;
+
 /**
  * {@link ContentProvider} for Pets app.
  */
@@ -64,15 +66,15 @@ public class PetProvider extends ContentProvider {
         int match = sUriMatcher.match(uri);
         switch (match) {
             case PETS:
-
-                // TODO: Perform database query on pets table
+                cursor = database.query(TABLE_NAME,projection,selection,selectionArgs,null,null,null);
                 break;
+
             case PET_ID:
 
                 selection = PetContract.PetEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
 
-                cursor = database.query(PetContract.PetEntry.TABLE_NAME, projection, selection, selectionArgs,
+                cursor = database.query(TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
             default:
@@ -86,6 +88,7 @@ public class PetProvider extends ContentProvider {
      */
     @Override
     public Uri insert(Uri uri, ContentValues contentValues) {
+
         return null;
     }
 

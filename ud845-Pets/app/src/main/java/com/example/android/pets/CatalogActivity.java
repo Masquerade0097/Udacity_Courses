@@ -34,6 +34,7 @@ import static com.example.android.pets.Data.PetContract.PetEntry.COLUMN_PET_BREE
 import static com.example.android.pets.Data.PetContract.PetEntry.COLUMN_PET_GENDER;
 import static com.example.android.pets.Data.PetContract.PetEntry.COLUMN_PET_NAME;
 import static com.example.android.pets.Data.PetContract.PetEntry.COLUMN_PET_WEIGHT;
+import static com.example.android.pets.Data.PetContract.PetEntry.CONTENT_URI;
 import static com.example.android.pets.Data.PetContract.PetEntry.GENDER_MALE;
 import static com.example.android.pets.Data.PetContract.PetEntry.TABLE_NAME;
 import static com.example.android.pets.Data.PetContract.PetEntry._ID;
@@ -101,8 +102,8 @@ public class CatalogActivity extends AppCompatActivity {
                 PetEntry.COLUMN_PET_BREED,
                 PetEntry.COLUMN_PET_GENDER
         };
-
-        Cursor cursor = db.query(
+//PREVIOUS APPROACH
+        /*Cursor cursor = db.query(
                 PetEntry.TABLE_NAME,
                 projections,
                 null,
@@ -110,7 +111,10 @@ public class CatalogActivity extends AppCompatActivity {
                 null,
                 null,
                 null
-        );
+        );*/
+//NEW APPROACH
+        Cursor cursor = getContentResolver().query(CONTENT_URI,projections,null,null,null);
+
 
 
 
