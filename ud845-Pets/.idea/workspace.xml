@@ -10,14 +10,10 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ba7eb44-0006-46fa-8b14-c9ee68660e0a" name="Default" comment="Add update() method and er">
+    <list default="true" id="9ba7eb44-0006-46fa-8b14-c9ee68660e0a" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/pets/Data/PetContract.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/pets/Data/PetDbHelper.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/pets/Data/PetProvider.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/pets/data/PetContract.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/pets/data/PetContract.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/pets/data/PetProvider.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/pets/data/PetProvider.java" />
     </list>
     <ignored path="ud845-Pets.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -101,8 +97,8 @@
       <file leaf-file-name="PetProvider.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/pets/data/PetProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="217" column="14" selection-start-line="217" selection-start-column="14" selection-end-line="217" selection-end-column="14" />
+            <state relative-caret-position="248">
+              <caret line="162" column="8" selection-start-line="162" selection-start-column="8" selection-end-line="162" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -2281,7 +2277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1499946749562</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add update() method and error checking in other methods">
+      <created>1500022110025</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1500022110025</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2378,7 +2381,8 @@
     <MESSAGE value="Query method Updated" />
     <MESSAGE value="Added Content REsolver for query() method" />
     <MESSAGE value="Added insert() method for Content Provider and resolved some errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added insert() method for Content Provider and resolved some errors" />
+    <MESSAGE value="Add update() method and error checking in other methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add update() method and error checking in other methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2755,8 +2759,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/pets/data/PetProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="217" column="14" selection-start-line="217" selection-start-column="14" selection-end-line="217" selection-end-column="14" />
+        <state relative-caret-position="248">
+          <caret line="162" column="8" selection-start-line="162" selection-start-column="8" selection-end-line="162" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
